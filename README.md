@@ -21,37 +21,22 @@ Predict the CO2 emission of a car where the weight is 2300kg, and the volume is 
 
 ## Program:
 ```
-import numpy as np
-import matplotlib.pyplot as plt
-
-X = np.array(eval(input()))
-Y = np.array(eval(input()))
-
-Xmean = np.mean(X)
-Ymean = np.mean(Y)
-num,den = 0,0
-for i in range(len(X)):
-    num += (X[i]-Xmean)*(Y[i]-Ymean)
-    den += (X[i]-Xmean)**2
-m = num/den
-c = Ymean-m*Xmean
-    
-print (m, c)
-
-Y_pred = m*X + c
-print (Y_pred)
-
-plt.scatter(X,Y)
-plt.plot(X,Y_pred,color="red")
-plt.show()
-
-
+import pandas as pd
+from sklearn import linear_model
+df=pd.read_csv("car (1).csv")
+x=df[["Volume","Weight"]]
+y=df["CO2"]
+regression=linear_model.LinearRegression()
+regression.fit(x,y)
+print(regression.coef_)
+print(regression.intercept_)
+print(regression.predict([[3300,1300]]))
 
 
 
 ```
 ## Output:
-![WhatsApp Image 2026-03-25 at 8 21 05 PM](https://github.com/user-attachments/assets/47e47e61-1f38-41e7-9a2e-b6af01075e3c)
+![WhatsApp Image 2026-03-25 at 8 19 48 PM](https://github.com/user-attachments/assets/89eccb38-8aa8-4b38-90eb-b58765b678be)
 
 
 ## Result
